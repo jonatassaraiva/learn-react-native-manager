@@ -1,11 +1,12 @@
 import firebase from 'firebase';
-import {
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  LOGIN_USER
-} from './types';
+
+export const authTypes = {
+  EMAIL_CHANGED: 'EMAIL_CHANGED',
+  PASSWORD_CHANGED: 'EMAIL_CHANGED',
+  LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
+  LOGIN_USER_FAIL: 'LOGIN_USER_FAIL',
+  LOGIN_USER: 'LOGIN_USER'
+};
 
 export const emailChanged = (text) => {
   return {
