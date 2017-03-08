@@ -57,7 +57,6 @@
     "react/jsx-wrap-multilines": "warn",
 
     "react/no-direct-mutation-state": "warn",
-    "react/prop-types": "error",
     "react/react-in-jsx-scope": "error",
     "react/self-closing-comp": "warn",
     "react/sort-comp": "warn"
