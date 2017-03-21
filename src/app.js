@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import { firebaseSetting } from '../settings';
 
 import store from './store';
-import LoginForm from './components/login-form';
+import Router from './router';
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <Provider store={this.store}>
         <View style={{ flex: 1 }}>
-          <LoginForm />
+          <Router />
         </View>
       </Provider>
     );
