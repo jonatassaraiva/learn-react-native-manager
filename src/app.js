@@ -17,13 +17,6 @@ class App extends Component {
     this.store = store.configure();
 
     firebase.initializeApp(firebaseSetting);
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user)
-        this.setState({ loggedIn: true });
-      else
-        this.setState({ loggedIn: false });
-    });
   }
 
   render() {

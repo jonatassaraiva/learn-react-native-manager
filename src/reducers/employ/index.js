@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
 import status from './action';
-import user from './user';
-import signIn from './sign-in';
+import create from './create';
 
 export default combineReducers({
   status,
-  signIn,
-  user
+  create
 });

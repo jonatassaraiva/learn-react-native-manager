@@ -1,15 +1,38 @@
-import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
-import LoginForm from './components/login-form';
+import React, { Component } from 'react';
+import { Scene, Router, Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { EmployeList, EmployeCreate } from './components/employ';
+import { signOut } from './actions/auth';
+import SignIn from './components/auth';
 
-const RouterComponent = () => {
-  return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene key="auth">
-        <Scene key="login" component={LoginForm} title="Please Login" />
-      </Scene>
-    </Router>
-  );
-};
+class RouterComponent extends Component {
 
-export default RouterComponent;
+  render() {
+    return (
+      <Router sceneStyle={{ paddingTop: 65 }}>
+        <Scene key="auth">
+          <Scene key="login" component={SignIn} title="Please Login" />
+        </Scene>
+
+        <Scene key="main">
+          <Scene
+            leftTitle="Sign Out"
+            onLeft={() => this.props.signOut()}
+            onRight={() => Actions.employeeCreate()}
+            rightTitle="Add"
+            key="employeeList"
+            component={EmployeList}
+            title="Employees"
+            initial
+          />
+
+          <Scene key="employeeCreate" component={EmployeCreate} title="Create Employee" />
+        </Scene>
+      </Router>
+    );
+  }
+}
+
+
+
+export default connect(null , { signOut })(RouterComponent);

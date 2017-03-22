@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../../actions/auth';
+import { autoSignIn, propChange, signIn } from '../../actions/auth';
 import { Card, Section, Input, Button, Spinner } from '../common';
 
-class LoginForm extends Component {
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
+class SignIn extends Component {
+  componentWillMount() {
+    if(!this.props.hasSignIn)
+      this.props.autoSignIn();
   }
 
   onButtonPress() {
     const { email, password } = this.props;
 
-    this.props.loginUser({ email, password });
+    this.props.signIn({ email, password });
   }
 
   renderButton() {
-    if (this.props.loading)
+    if (this.props.execution)
       return <Spinner size="large" />;
 
     return (
@@ -38,7 +35,7 @@ class LoginForm extends Component {
             <Input
               label="Email"
               placeholder="email@gmail.com"
-              onChangeText={this.onEmailChange.bind(this)}
+              onChangeText={value => this.props.propChange({prop: 'email', value})}
               value={this.props.email}
             />
           </Section>
@@ -48,7 +45,7 @@ class LoginForm extends Component {
               secureTextEntry
               label="Password"
               placeholder="password"
-              onChangeText={this.onPasswordChange.bind(this)}
+              onChangeText={value => this.props.propChange({prop: 'password', value})}
               value={this.props.password}
             />
           </Section>
@@ -80,15 +77,19 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
+  const { email, password, hasSignIn } = auth.signIn;
 
-  return { email, password, error, loading };
+  const { error, execution, message } = auth.status;
+
+  const hasError = error ? true : false;
+
+  return { email, password, hasSignIn, hasError, execution, message };
 };
 
 const mapActionsToProps = {
-  emailChanged, 
-  passwordChanged, 
-  loginUser
+  autoSignIn,
+  signIn,
+  propChange
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(LoginForm);
+export default connect(mapStateToProps, mapActionsToProps)(SignIn);
