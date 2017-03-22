@@ -10,12 +10,12 @@ class RouterComponent extends Component {
   render() {
     return (
       <Router sceneStyle={{ paddingTop: 65 }}>
-        <Scene key="auth">
+        <Scene key="auth" duration={durations.NONE}>
           <Scene key="login" component={SignIn} title="Please Login" />
         </Scene>
 
-        <Scene key="main">
-          <Scene
+        <Scene key="main" duration={durations.NONE}>
+          <Scene duration={durations.DEFAULT}
             leftTitle="Sign Out"
             onLeft={() => this.props.signOut()}
             onRight={() => Actions.employeeCreate()}
@@ -23,16 +23,19 @@ class RouterComponent extends Component {
             key="employeeList"
             component={EmployeList}
             title="Employees"
-            initial
-          />
+            initial />
 
-          <Scene key="employeeCreate" component={EmployeCreate} title="Create Employee" />
+          <Scene key="employeeCreate" duration={durations.DEFAULT} component={EmployeCreate} 
+            title="Create Employee" />
         </Scene>
       </Router>
     );
   }
 }
 
-
+const durations ={
+  NONE: 0,
+  DEFAULT: 300
+};
 
 export default connect(null , { signOut })(RouterComponent);
