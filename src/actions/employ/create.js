@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import employTypes from './types';
+import actionTypes from './types';
 
 export const create = ({ name, phone, shift }) => {
   return (dispatch) => {
@@ -17,12 +17,12 @@ export const create = ({ name, phone, shift }) => {
 
 const creating = () => {
   return { 
-    type: employTypes.CREATING
+    type: actionTypes.CREATE
   };
 };
 
 const createdSucess = () => {
   return {
-    type: employTypes.CREATED_SUCESS
+    type: actionTypes.CREATE_SUCESS
   };
 };

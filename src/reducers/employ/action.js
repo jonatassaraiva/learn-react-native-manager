@@ -1,19 +1,52 @@
-import employTypes from '../../actions/employ/types';
+import actionTypes from '../../actions/employ/types';
 
 const INITIAL_STATE = { 
-  action: employTypes.INITIAL_SATE 
+  action: actionTypes.INITIAL_SATE,
+  message: 'Initial state.',
+  execution: false,
+  error: null
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case employTypes.NEW:
-      return { ...state, action: employTypes.NEW};
-    case employTypes.CREATED_SUCESS:
-      return { ...state, action: employTypes.CREATED_SUCESS};
-    case employTypes.EMPLOYEE_PROP_CHANGE:
-      return { ...state, action: employTypes.EMPLOYEE_PROP_CHANGE};
-    case employTypes.INITIAL_SATE:
-      return { ...INITIAL_STATE };
+    case actionTypes.CREATE:
+      return { 
+        ...state, 
+        action: actionTypes.CREATE,
+        execution: true,
+        error: null
+      };
+    case actionTypes.CREATE_SUCESS:
+      return { 
+        ...state, 
+        action: actionTypes.CREATE_SUCESS,
+        execution: false,
+        error: null
+      };
+    case actionTypes.CREATE_ERROR:
+      return { 
+        ...state, 
+        action: actionTypes.CREATE_ERROR,
+        execution: false,
+        error: action.payload
+      };
+
+    case actionTypes.NEW:
+      return { 
+        ...state, 
+        action: actionTypes.NEW,
+        execution: false,
+        error: null
+      };
+
+    case actionTypes.PROP_CHANGE:
+      return { 
+        ...state, 
+        action: actionTypes.PROP_CHANGE,
+        execution: false,
+        error: null
+      };
+
     default:
       return state;
   }
