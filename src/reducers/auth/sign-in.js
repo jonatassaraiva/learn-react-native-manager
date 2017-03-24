@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
 
     case actionTypes.SIGN_IN_SUCESS:
     case actionTypes.AUTO_SIGN_IN_SUCESS:
-      return { ...INITIAL_STATE, hasSIGNIn: true };
+      return { ...INITIAL_STATE, hasSignIn: true };
 
     case actionTypes.SIGN_OUT_SUCESS:
       return { ...INITIAL_STATE };

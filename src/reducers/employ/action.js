@@ -47,6 +47,28 @@ export default (state = INITIAL_STATE, action) => {
         error: null
       };
 
+    case actionTypes.FETCH:
+      return { 
+        ...state, 
+        action: actionTypes.FETCH,
+        execution: true,
+        error: null
+      };
+    case actionTypes.FETCH_SUCESS:
+      return { 
+        ...state, 
+        action: actionTypes.FETCH_SUCESS,
+        execution: false,
+        error: null
+      };
+    case actionTypes.FETCH_ERROR:
+      return { 
+        ...state, 
+        action: actionTypes.FETCH_ERROR,
+        execution: false,
+        error: action.payload
+      };
+
     default:
       return state;
   }

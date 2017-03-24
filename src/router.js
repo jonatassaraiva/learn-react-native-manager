@@ -18,15 +18,15 @@ class RouterComponent extends Component {
           <Scene duration={durations.DEFAULT}
             leftTitle="Sign Out"
             onLeft={() => this.props.signOut()}
-            onRight={() => Actions.employeeCreate()}
+            onRight={() => Actions.employeCreate()}
             rightTitle="Add"
-            key="employeeList"
+            key="employeList"
             component={EmployeList}
             title="Employees"
             initial />
 
-          <Scene key="employeeCreate" duration={durations.DEFAULT} component={EmployeCreate} 
-            title="Create Employee" />
+          <Scene key="employeCreate" duration={durations.DEFAULT} component={EmployeCreate} 
+            title="Create Employe" />
         </Scene>
       </Router>
     );

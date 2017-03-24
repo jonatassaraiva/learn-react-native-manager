@@ -5,12 +5,13 @@ import { autoSignIn, propChange, signIn } from '../../actions/auth';
 import { Card, Section, Input, Button, Spinner } from '../common';
 
 class SignIn extends Component {
+
   componentWillMount() {
     if(!this.props.hasSignIn)
       this.props.autoSignIn();
   }
 
-  onButtonPress() {
+  onSignInPress() {
     const { email, password } = this.props;
 
     this.props.signIn({ email, password });
@@ -21,7 +22,7 @@ class SignIn extends Component {
       return <Spinner size="large" />;
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
+      <Button onPress={this.onSignInPress.bind(this)}>
         Login
       </Button>
     );
@@ -76,7 +77,7 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({auth}) => {
   const { email, password, hasSignIn } = auth.signIn;
 
   const { error, execution, message } = auth.status;
